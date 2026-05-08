@@ -1,74 +1,87 @@
-<link rel="apple-touch-icon" href="icon.png">
-<meta name="apple-mobile-web-app-title" content="SafeTrack">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SafeTrack">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" href="icon.png">
+<title>SafeTrack</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;}
-.app{max-width:380px;margin:0 auto;background:var(--color-background-primary);border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);overflow:hidden;min-height:480px;}
+body{font-family:system-ui,sans-serif;background:#f5f5f5;min-height:100vh;display:flex;align-items:center;justify-content:center;}
+.app{max-width:380px;width:100%;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 2px 16px rgba(0,0,0,0.10);overflow:hidden;min-height:480px;}
 .screen{display:none;flex-direction:column;}
 .screen.active{display:flex;}
-.hdr{padding:18px 20px 14px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:12px;}
-.hdr-logo{width:34px;height:34px;background:#1D9E75;border-radius:8px;display:flex;align-items:center;justify-content:center;}
-.hdr-logo i{color:#fff;font-size:17px;}
-.hdr-title{font-size:15px;font-weight:500;color:var(--color-text-primary);}
-.hdr-sub{font-size:12px;color:var(--color-text-secondary);}
-.hdr-action{margin-left:auto;background:none;border:none;cursor:pointer;color:var(--color-text-secondary);font-size:19px;padding:4px;}
+.hdr{padding:18px 20px 14px;border-bottom:1px solid #eee;display:flex;align-items:center;gap:12px;background:#fff;}
+.hdr-logo{width:34px;height:34px;background:#C0132A;border-radius:8px;display:flex;align-items:center;justify-content:center;}
+.hdr-logo svg{width:20px;height:20px;}
+.hdr-title{font-size:15px;font-weight:600;color:#111;}
+.hdr-sub{font-size:12px;color:#888;}
+.hdr-action{margin-left:auto;background:none;border:none;cursor:pointer;color:#888;font-size:22px;padding:4px;line-height:1;}
 .body{padding:20px;flex:1;}
 .hero{text-align:center;padding:28px 20px 16px;}
-.hero-ico{width:68px;height:68px;background:#E1F5EE;border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
-.hero-ico i{font-size:34px;color:#0F6E56;}
-.hero h1{font-size:22px;font-weight:500;color:var(--color-text-primary);margin-bottom:5px;}
-.hero p{font-size:14px;color:var(--color-text-secondary);line-height:1.5;}
+.hero-ico{width:72px;height:72px;background:#fde8eb;border-radius:18px;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;}
+.hero-ico svg{width:40px;height:40px;}
+.hero h1{font-size:24px;font-weight:700;color:#111;margin-bottom:5px;}
+.hero p{font-size:14px;color:#888;line-height:1.5;}
 .fl{margin-bottom:13px;}
-.fl-lbl{font-size:11px;color:var(--color-text-secondary);margin-bottom:5px;font-weight:500;text-transform:uppercase;letter-spacing:0.5px;}
-input[type=text],input[type=password],select{width:100%;padding:10px 12px;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);font-size:14px;background:var(--color-background-secondary);color:var(--color-text-primary);outline:none;transition:border-color .15s;}
-input:focus,select:focus{border-color:#1D9E75;}
-.btn-main{width:100%;padding:12px;background:#1D9E75;color:#fff;border:none;border-radius:var(--border-radius-md);font-size:15px;font-weight:500;cursor:pointer;transition:opacity .15s;margin-top:6px;}
+.fl-lbl{font-size:11px;color:#888;margin-bottom:5px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;}
+input[type=text],input[type=password],select{width:100%;padding:11px 13px;border:1px solid #e0e0e0;border-radius:8px;font-size:14px;background:#fafafa;color:#111;outline:none;transition:border-color .15s;}
+input:focus,select:focus{border-color:#C0132A;background:#fff;}
+.btn-main{width:100%;padding:13px;background:#C0132A;color:#fff;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;transition:opacity .15s;margin-top:6px;}
 .btn-main:hover{opacity:.9;}
-.err{font-size:12px;color:var(--color-text-danger);background:var(--color-background-danger);padding:8px 12px;border-radius:var(--border-radius-md);margin-top:8px;display:none;}
-.info-card{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:12px 14px;margin-bottom:14px;}
-.info-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:0.5px solid var(--color-border-tertiary);}
+.err{font-size:12px;color:#C0132A;background:#fde8eb;padding:8px 12px;border-radius:8px;margin-top:8px;display:none;}
+.info-card{background:#f7f7f7;border-radius:10px;padding:12px 14px;margin-bottom:14px;}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid #eee;}
 .info-row:last-child{border-bottom:none;}
-.ik{font-size:12px;color:var(--color-text-secondary);}
-.iv{font-size:13px;font-weight:500;color:var(--color-text-primary);}
-.loc-bar{background:#E1F5EE;border-radius:var(--border-radius-md);padding:9px 13px;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
-.loc-bar i{color:#0F6E56;font-size:15px;}
-.loc-bar span{font-size:12px;color:#085041;flex:1;}
-.loc-badge{font-size:11px;color:#0F6E56;background:#fff;padding:2px 8px;border-radius:99px;}
-.safe-btn{width:100%;padding:32px 12px;background:#EAF3DE;border:2px solid #639922;border-radius:16px;color:#27500A;font-size:18px;font-weight:500;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:4px;}
-.safe-btn i{font-size:40px;color:#3B6D11;}
+.ik{font-size:12px;color:#888;}
+.iv{font-size:13px;font-weight:600;color:#111;}
+.loc-bar{background:#fde8eb;border-radius:8px;padding:9px 13px;margin-bottom:18px;display:flex;align-items:center;gap:8px;}
+.loc-bar svg{width:15px;height:15px;color:#C0132A;flex-shrink:0;}
+.loc-bar span{font-size:12px;color:#7a0010;flex:1;}
+.loc-badge{font-size:11px;color:#C0132A;background:#fff;padding:2px 8px;border-radius:99px;font-weight:600;}
+.safe-btn{width:100%;padding:32px 12px;background:#EAF3DE;border:2px solid #639922;border-radius:16px;color:#27500A;font-size:20px;font-weight:700;cursor:pointer;transition:all .15s;display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:4px;}
+.safe-btn svg{width:44px;height:44px;color:#3B6D11;}
 .safe-btn:hover{background:#C0DD97;}
 .safe-btn:active{transform:scale(0.97);}
-.tick-badge{display:inline-flex;align-items:center;gap:6px;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:99px;padding:4px 12px;font-size:12px;color:var(--color-text-secondary);margin-bottom:14px;}
-.tick-badge i{font-size:13px;}
-.done-card{background:#EAF3DE;border-radius:var(--border-radius-lg);padding:24px;text-align:center;margin-top:8px;}
+.safe-btn:disabled{opacity:0.6;cursor:default;}
+.tick-badge{display:inline-flex;align-items:center;gap:6px;background:#f7f7f7;border:1px solid #eee;border-radius:99px;padding:4px 12px;font-size:12px;color:#888;margin-bottom:14px;}
+.done-card{background:#EAF3DE;border-radius:14px;padding:24px;text-align:center;margin-top:8px;}
 .done-ico{width:54px;height:54px;border-radius:50%;background:#C0DD97;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;}
-.done-ico i{font-size:26px;color:#27500A;}
-.done-card h3{font-size:17px;font-weight:500;color:#27500A;margin-bottom:5px;}
+.done-ico svg{width:28px;height:28px;color:#27500A;}
+.done-card h3{font-size:17px;font-weight:700;color:#27500A;margin-bottom:5px;}
 .done-card p{font-size:13px;color:#3B6D11;line-height:1.5;}
 .done-meta{margin-top:12px;font-size:12px;color:#3B6D11;}
-.reset-btn{width:100%;padding:10px;background:var(--color-background-secondary);color:var(--color-text-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);font-size:14px;cursor:pointer;margin-top:10px;}
-.reset-btn:hover{background:var(--color-background-tertiary);}
-.divider{height:0.5px;background:var(--color-border-tertiary);margin:16px 0;}
-.sec-lbl{font-size:11px;color:var(--color-text-secondary);font-weight:500;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
-.hist-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0.5px solid var(--color-border-tertiary);}
+.reset-btn{width:100%;padding:10px;background:#f7f7f7;color:#111;border:1px solid #e0e0e0;border-radius:8px;font-size:14px;cursor:pointer;margin-top:10px;}
+.reset-btn:hover{background:#eee;}
+.divider{height:1px;background:#eee;margin:16px 0;}
+.sec-lbl{font-size:11px;color:#888;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:8px;}
+.hist-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid #eee;}
 .hist-item:last-child{border-bottom:none;}
 .hist-dot{width:9px;height:9px;border-radius:50%;background:#639922;flex-shrink:0;}
 .hist-info{flex:1;}
-.hist-time{font-size:13px;font-weight:500;color:var(--color-text-primary);}
-.hist-loc{font-size:11px;color:var(--color-text-secondary);}
-.hist-tag{font-size:11px;font-weight:500;padding:2px 8px;border-radius:99px;background:#EAF3DE;color:#27500A;}
-.greet{font-size:13px;color:var(--color-text-secondary);margin-bottom:3px;}
-.name-lg{font-size:20px;font-weight:500;color:var(--color-text-primary);margin-bottom:14px;}
-.logout-btn{display:flex;align-items:center;gap:6px;color:var(--color-text-secondary);font-size:13px;background:none;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:7px 14px;cursor:pointer;margin-top:14px;}
-.logout-btn:hover{background:var(--color-background-secondary);}
-.first-notice{font-size:12px;color:#085041;background:#E1F5EE;padding:8px 12px;border-radius:var(--border-radius-md);margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+.hist-time{font-size:13px;font-weight:600;color:#111;}
+.hist-loc{font-size:11px;color:#888;}
+.hist-tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:99px;background:#EAF3DE;color:#27500A;}
+.greet{font-size:13px;color:#888;margin-bottom:3px;}
+.name-lg{font-size:20px;font-weight:700;color:#111;margin-bottom:14px;}
+.logout-btn{display:flex;align-items:center;gap:6px;color:#888;font-size:13px;background:none;border:1px solid #e0e0e0;border-radius:8px;padding:7px 14px;cursor:pointer;margin-top:14px;}
+.logout-btn:hover{background:#f7f7f7;}
+.first-notice{font-size:12px;color:#7a0010;background:#fde8eb;padding:8px 12px;border-radius:8px;margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+.sending{font-size:12px;color:#888;text-align:center;margin-top:8px;}
 </style>
-
+</head>
+<body>
 <div class="app">
 
   <div class="screen active" id="s-login">
     <div class="hero">
-      <div class="hero-ico"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+      <div class="hero-ico">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C0132A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L20 6v6c0 5-8 10-8 10S4 17 4 12V6z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
       <h1>SafeTrack</h1>
       <p>Staff daily safety check-in</p>
     </div>
@@ -77,17 +90,19 @@ input:focus,select:focus{border-color:#1D9E75;}
       <div class="fl"><div class="fl-lbl">Password</div><input type="password" id="lp" placeholder="Enter password" /></div>
       <div class="err" id="lerr"></div>
       <button class="btn-main" onclick="doLogin()">Sign in</button>
-      <p style="font-size:12px;color:var(--color-text-secondary);text-align:center;margin-top:12px;">Demo: any username · password <strong>1234</strong></p>
+      <p style="font-size:12px;color:#aaa;text-align:center;margin-top:12px;">Demo: any username · password <strong>1234</strong></p>
     </div>
   </div>
 
   <div class="screen" id="s-profile">
     <div class="hdr">
-      <div class="hdr-logo"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
-      <div><div class="hdr-title">Personal information</div><div class="hdr-sub">First-time setup — done once</div></div>
+      <div class="hdr-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L20 6v6c0 5-8 10-8 10S4 17 4 12V6z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
+      <div><div class="hdr-title">Personal information</div><div class="hdr-sub" id="profile-sub">First-time setup — done once</div></div>
     </div>
-    <div class="body" style="overflow-y:auto;max-height:500px;">
-      <div class="first-notice"><i class="ti ti-info-circle" aria-hidden="true"></i>You only need to fill this once. Future logins go straight to check-in.</div>
+    <div class="body" style="overflow-y:auto;max-height:520px;">
+      <div class="first-notice">&#9432; You only need to fill this once. Future logins go straight to check-in.</div>
       <div class="fl"><div class="fl-lbl">Full name</div><input type="text" id="pn" placeholder="e.g. Somchai Jaidee" /></div>
       <div class="fl"><div class="fl-lbl">Staff ID</div><input type="text" id="pi" placeholder="e.g. EMP-00142" /></div>
       <div class="fl"><div class="fl-lbl">Position</div><input type="text" id="pp" placeholder="e.g. Safety Officer" /></div>
@@ -102,14 +117,16 @@ input:focus,select:focus{border-color:#1D9E75;}
 
   <div class="screen" id="s-check">
     <div class="hdr">
-      <div class="hdr-logo"><i class="ti ti-shield-check" aria-hidden="true"></i></div>
+      <div class="hdr-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L20 6v6c0 5-8 10-8 10S4 17 4 12V6z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
       <div><div class="hdr-title">Daily check-in</div><div class="hdr-sub" id="hdr-date"></div></div>
-      <button class="hdr-action" onclick="showEditProfile()" title="My profile"><i class="ti ti-user-circle" aria-hidden="true"></i></button>
+      <button class="hdr-action" onclick="showEditProfile()" title="My profile">&#9711;</button>
     </div>
-    <div class="body" style="overflow-y:auto;max-height:530px;">
+    <div class="body" style="overflow-y:auto;max-height:600px;">
       <div class="greet">Good day,</div>
       <div class="name-lg" id="dn"></div>
-      <div class="tick-badge"><i class="ti ti-clock" aria-hidden="true"></i><span id="lt"></span></div>
+      <div class="tick-badge">&#128336; <span id="lt"></span></div>
       <div class="info-card">
         <div class="info-row"><span class="ik">ID</span><span class="iv" id="di"></span></div>
         <div class="info-row"><span class="ik">Position</span><span class="iv" id="dp"></span></div>
@@ -117,22 +134,25 @@ input:focus,select:focus{border-color:#1D9E75;}
         <div class="info-row"><span class="ik">Area</span><span class="iv" id="da"></span></div>
       </div>
       <div class="loc-bar" id="lb">
-        <i class="ti ti-map-pin" aria-hidden="true"></i>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C0132A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
         <span id="ltxt">Fetching location…</span>
         <span class="loc-badge" id="lbadge">…</span>
       </div>
       <div id="check-area">
-        <p style="font-size:13px;color:var(--color-text-secondary);margin-bottom:14px;">Tap to confirm your safety status for today.</p>
-        <button class="safe-btn" onclick="submitSafe()">
-          <i class="ti ti-circle-check" aria-hidden="true"></i>
+        <p style="font-size:13px;color:#888;margin-bottom:14px;">Tap to confirm your safety status for today.</p>
+        <button class="safe-btn" id="safe-btn" onclick="submitSafe()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#3B6D11" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           I am safe
         </button>
+        <div class="sending" id="sending-msg" style="display:none;">Saving your check-in...</div>
       </div>
       <div id="done-area" style="display:none;">
         <div class="done-card">
-          <div class="done-ico"><i class="ti ti-circle-check" aria-hidden="true"></i></div>
+          <div class="done-ico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#27500A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
           <h3>Checked in — Safe</h3>
-          <p>Your safety status has been recorded. Stay safe and follow all protocols.</p>
+          <p>Your safety status has been recorded and saved to the system.</p>
           <div class="done-meta" id="done-meta"></div>
         </div>
         <button class="reset-btn" onclick="resetCheck()">Update my status</button>
@@ -141,7 +161,7 @@ input:focus,select:focus{border-color:#1D9E75;}
       <div class="sec-lbl">Today's submissions</div>
       <div id="hist"></div>
       <div style="text-align:center;">
-        <button class="logout-btn" onclick="logout()"><i class="ti ti-logout" aria-hidden="true"></i> Sign out</button>
+        <button class="logout-btn" onclick="logout()">&#8594; Sign out</button>
       </div>
     </div>
   </div>
@@ -149,6 +169,7 @@ input:focus,select:focus{border-color:#1D9E75;}
 </div>
 
 <script>
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbwNAkL19Z3gzcrexaz8Szk8rzws2yRwpJusDHPCjr_5QOVwkAGCdXEHTGrRy3c9q1NY/exec';
 const DB = {};
 const LOG = [];
 let CU = null;
@@ -189,7 +210,7 @@ function showEditProfile(){
   document.getElementById('pd').value=pr.d;
   document.getElementById('pa').value=pr.a;
   document.getElementById('perr').style.display='none';
-  document.querySelector('#s-profile .hdr-sub').textContent='Edit your profile';
+  document.getElementById('profile-sub').textContent='Edit your profile';
   go('s-profile');
 }
 
@@ -216,41 +237,61 @@ function getLocation(){
   navigator.geolocation.getCurrentPosition(pos=>{
     const la=pos.coords.latitude.toFixed(5);
     const lo=pos.coords.longitude.toFixed(5);
-    LOC={lat:la,lng:lo,txt:la+'°, '+lo+'°'};
+    LOC={lat:la,lng:lo,txt:la+', '+lo};
     txt.textContent=la+'° N,  '+lo+'° E';
     badge.textContent='Live';
   },()=>{txt.textContent='Location access denied';badge.textContent='Off';LOC={lat:null,lng:null,txt:'Denied'};});
 }
 setInterval(()=>{if(document.getElementById('s-check').classList.contains('active'))getLocation();},30000);
 
-function submitSafe(){
+async function submitSafe(){
+  const pr=DB[CU];
   const now=new Date();
-  const entry={time:now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}),date:now.toLocaleDateString('en-GB'),lat:LOC.lat,lng:LOC.lng,locTxt:LOC.txt};
+  const entry={
+    name:pr.n, id:pr.i, position:pr.p,
+    department:pr.d, area:pr.a,
+    lat:LOC.lat, lng:LOC.lng,
+    time:now.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'}),
+    date:now.toLocaleDateString('en-GB')
+  };
+
+  document.getElementById('safe-btn').disabled=true;
+  document.getElementById('sending-msg').style.display='block';
+
+  try {
+    await fetch(SHEET_URL, {
+      method:'POST',
+      mode:'no-cors',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(entry)
+    });
+  } catch(err) {}
+
   LOG.unshift(entry);
   document.getElementById('check-area').style.display='none';
   document.getElementById('done-area').style.display='block';
-  document.getElementById('done-meta').innerHTML='<i class="ti ti-clock" style="font-size:12px;vertical-align:-1px;" aria-hidden="true"></i> '+entry.time+(entry.lat?' &nbsp;·&nbsp; <i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px;" aria-hidden="true"></i> '+entry.lat+', '+entry.lng:'');
+  document.getElementById('done-meta').innerHTML=
+    '&#128336; Reported at '+entry.time+
+    (entry.lat?' &nbsp;·&nbsp; &#128205; '+entry.lat+', '+entry.lng:'');
   renderHist();
-  pingAPI(entry);
-}
-
-async function pingAPI(e){
-  try{await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:50,messages:[{role:'user',content:'SafeTrack log: '+JSON.stringify(e)}]})});}catch(x){}
 }
 
 function resetCheck(){
   document.getElementById('check-area').style.display='block';
   document.getElementById('done-area').style.display='none';
+  document.getElementById('sending-msg').style.display='none';
+  const btn=document.getElementById('safe-btn');
+  if(btn)btn.disabled=false;
 }
 
 function renderHist(){
   const el=document.getElementById('hist');
-  if(!LOG.length){el.innerHTML='<p style="font-size:13px;color:var(--color-text-secondary);">No submissions yet today</p>';return;}
+  if(!LOG.length){el.innerHTML='<p style="font-size:13px;color:#aaa;">No submissions yet today</p>';return;}
   el.innerHTML=LOG.slice(0,5).map(h=>`
     <div class="hist-item">
       <div class="hist-dot"></div>
       <div class="hist-info">
-        <div class="hist-time">${h.time}</div>
+        <div class="hist-time">${h.name} &middot; ${h.time}</div>
         <div class="hist-loc">${h.lat?'GPS: '+h.lat+', '+h.lng:'No location'}</div>
       </div>
       <div class="hist-tag">Safe</div>
@@ -267,3 +308,5 @@ function logout(){
 
 document.getElementById('lp').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 </script>
+</body>
+</html>
