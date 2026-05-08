@@ -1,0 +1,69 @@
+
+<div style="display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px 0;">
+
+  <svg width="192" height="192" viewBox="0 0 192 192" role="img" xmlns="http://www.w3.org/2000/svg">
+    <title>SafeTrack app icon</title>
+    <desc>Red rounded square with a white shield and checkmark</desc>
+    <rect width="192" height="192" rx="42" fill="#C0132A"/>
+    <rect width="192" height="192" rx="42" fill="#A0102300" opacity="0.15"/>
+    <path d="M96 30 L148 52 L148 96 C148 126 96 162 96 162 C96 162 44 126 44 96 L44 52 Z" fill="#fff" opacity="0.15"/>
+    <path d="M96 38 L142 58 L142 96 C142 122 96 154 96 154 C96 154 50 122 50 96 L50 58 Z" fill="#fff"/>
+    <path d="M76 95 L89 109 L116 82" fill="none" stroke="#C0132A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="96" y="178" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#fff" letter-spacing="2" opacity="0.9">SAFETRACK</text>
+  </svg>
+
+  <div style="display:flex;gap:16px;align-items:flex-end;">
+    <div style="text-align:center;">
+      <svg width="80" height="80" viewBox="0 0 192 192" role="img" xmlns="http://www.w3.org/2000/svg">
+        <rect width="192" height="192" rx="42" fill="#C0132A"/>
+        <path d="M96 38 L142 58 L142 96 C142 122 96 154 96 154 C96 154 50 122 50 96 L50 58 Z" fill="#fff"/>
+        <path d="M76 95 L89 109 L116 82" fill="none" stroke="#C0132A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:6px;">80px</div>
+    </div>
+    <div style="text-align:center;">
+      <svg width="48" height="48" viewBox="0 0 192 192" role="img" xmlns="http://www.w3.org/2000/svg">
+        <rect width="192" height="192" rx="42" fill="#C0132A"/>
+        <path d="M96 38 L142 58 L142 96 C142 122 96 154 96 154 C96 154 50 122 50 96 L50 58 Z" fill="#fff"/>
+        <path d="M76 95 L89 109 L116 82" fill="none" stroke="#C0132A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:6px;">48px</div>
+    </div>
+    <div style="text-align:center;">
+      <svg width="32" height="32" viewBox="0 0 192 192" role="img" xmlns="http://www.w3.org/2000/svg">
+        <rect width="192" height="192" rx="42" fill="#C0132A"/>
+        <path d="M96 38 L142 58 L142 96 C142 122 96 154 96 154 C96 154 50 122 50 96 L50 58 Z" fill="#fff"/>
+        <path d="M76 95 L89 109 L116 82" fill="none" stroke="#C0132A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div style="font-size:11px;color:var(--color-text-secondary);margin-top:6px;">32px</div>
+    </div>
+  </div>
+
+  <button onclick="downloadIcon()" style="padding:10px 24px;background:#C0132A;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;">Download icon.png</button>
+</div>
+
+<script>
+function downloadIcon() {
+  const svg = `<svg width="192" height="192" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
+    <rect width="192" height="192" rx="42" fill="#C0132A"/>
+    <path d="M96 38 L142 58 L142 96 C142 122 96 154 96 154 C96 154 50 122 50 96 L50 58 Z" fill="#fff"/>
+    <path d="M76 95 L89 109 L116 82" fill="none" stroke="#C0132A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="96" y="178" text-anchor="middle" font-family="system-ui,sans-serif" font-size="13" font-weight="700" fill="#fff" letter-spacing="2">SAFETRACK</text>
+  </svg>`;
+  const canvas = document.createElement('canvas');
+  canvas.width = 512; canvas.height = 512;
+  const ctx = canvas.getContext('2d');
+  const img = new Image();
+  const blob = new Blob([svg], {type:'image/svg+xml'});
+  const url = URL.createObjectURL(blob);
+  img.onload = () => {
+    ctx.drawImage(img, 0, 0, 512, 512);
+    URL.revokeObjectURL(url);
+    const a = document.createElement('a');
+    a.download = 'icon.png';
+    a.href = canvas.toDataURL('image/png');
+    a.click();
+  };
+  img.src = url;
+}
+</script>
